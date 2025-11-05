@@ -12,17 +12,6 @@
       background-color: #f9fafb;
       font-family: 'Inter', sans-serif;
     }
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: #1e3a8a;
-      color: white;
-      padding: 16px 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
     iframe {
       width: 92%;
       height: 80vh;
@@ -33,7 +22,7 @@
     .iframe-wrapper {
       display: flex;
       justify-content: center;
-      margin-top: 150px;
+      margin-top: 130px;
     }
     button {
       padding: 10px 16px;
@@ -54,25 +43,33 @@
   </style>
 </head>
 <body>
-  <div class="header text-center">
-    <h1 class="text-2xl font-bold">🌐 Websites Dashboard</h1>
-    <div class="flex flex-wrap justify-center gap-2 mt-3">
-      <span class="text-blue-200 font-medium mr-2 hidden md:inline">Interval:</span>
-      <button data-time="5" class="btn-blue active">5s</button>
-      <button data-time="10" class="btn-blue">10s</button>
-      <button data-time="15" class="btn-blue">15s</button>
-      <button data-time="30" class="btn-blue">30s</button>
-      <button data-time="45" class="btn-blue">45s</button>
-      <button data-time="60" class="btn-blue">60s</button>
-      <button id="next-btn" class="btn-green">Next ➡️</button>
-      <button id="pause-btn" class="btn-yellow">⏸️ Pause</button>
+  <!-- Header -->
+  <div class="fixed top-0 left-0 right-0 z-50 bg-blue-400 shadow-lg">
+    <div class="flex justify-between items-center px-6 py-3">
+      <!-- Left: Title -->
+      <h1 class="text-2xl font-bold text-white">🌐 Websites Dashboard</h1>
+
+      <!-- Right: Controls -->
+      <div class="flex flex-wrap justify-end items-center gap-2">
+        <span class="text-blue-100 font-medium mr-1 hidden md:inline">Interval:</span>
+        <button data-time="5" class="btn-blue active">5s</button>
+        <button data-time="10" class="btn-blue">10s</button>
+        <button data-time="15" class="btn-blue">15s</button>
+        <button data-time="30" class="btn-blue">30s</button>
+        <button data-time="45" class="btn-blue">45s</button>
+        <button data-time="60" class="btn-blue">60s</button>
+        <button id="next-btn" class="btn-green">Next ➡️</button>
+        <button id="pause-btn" class="btn-yellow">⏸️ Pause</button>
+      </div>
     </div>
   </div>
 
+  <!-- Iframe -->
   <div class="iframe-wrapper">
     <iframe id="rotator" src="" frameborder="0"></iframe>
   </div>
 
+  <!-- Script -->
   <script>
     const sites = [
       "https://www.wikipedia.org",
@@ -116,20 +113,18 @@
       });
     });
 
-    nextBtn.addEventListener('click', () => {
-      nextSite();
-    });
+    nextBtn.addEventListener('click', nextSite);
 
     pauseBtn.addEventListener('click', () => {
       paused = !paused;
       pauseBtn.textContent = paused ? '▶️ Resume' : '⏸️ Pause';
     });
 
-    window.addEventListener("beforeunload", function () {
+    window.addEventListener("beforeunload", () => {
       localStorage.setItem("last_index", index);
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
       const savedIndex = localStorage.getItem("last_index");
       if (savedIndex !== null) index = parseInt(savedIndex);
       loadSite(index);
