@@ -30,7 +30,7 @@
       transition: margin-top 0.3s ease;
     }
 
-    /* 🔹 Button Design */
+    /* 🔹 Button Styling */
     .btn {
       padding: 8px 16px;
       border-radius: 10px;
@@ -75,18 +75,32 @@
       background-color: #60a5fa;
       color: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease;
     }
 
-    /* 💻 Desktop Layout */
-    .header .header-inner {
+    .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 20px;
+      padding: 14px 20px;
       flex-wrap: wrap;
+      transition: all 0.3s ease;
     }
 
-    /* 📱 Mobile Layout (Header in column) */
+    /* Shrinking header class */
+    .header.shrink .header-inner {
+      padding: 6px 20px;
+    }
+    .header.shrink h1 {
+      font-size: 1.1rem;
+    }
+
+    /* 📱 Mobile Layout */
     @media (max-width: 768px) {
       .header .header-inner {
         flex-direction: column;
@@ -119,6 +133,14 @@
       iframe {
         height: 70vh;
       }
+
+      .header.shrink .header-inner {
+        padding: 4px 10px;
+      }
+
+      .header.shrink h1 {
+        font-size: 1.1rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -144,7 +166,7 @@
 </head>
 <body>
   <!-- Header -->
-  <div class="fixed top-0 left-0 right-0 z-50 header">
+  <div class="header" id="main-header">
     <div class="header-inner">
       <h1 class="text-2xl font-bold flex items-center gap-2">
         🌐 Websites Dashboard
@@ -182,6 +204,7 @@
     const timeButtons = document.querySelectorAll('button[data-time]');
     const nextBtn = document.getElementById('next-btn');
     const pauseBtn = document.getElementById('pause-btn');
+    const header = document.getElementById('main-header');
 
     let index = 0;
     let delay = 5000;
@@ -220,6 +243,7 @@
       pauseBtn.textContent = paused ? '▶️ Resume' : '⏸️ Pause';
     });
 
+    // Save page state
     window.addEventListener("beforeunload", () => {
       localStorage.setItem("last_index", index);
     });
@@ -229,6 +253,18 @@
       if (savedIndex !== null) index = parseInt(savedIndex);
       loadSite(index);
       startRotation(delay);
+    });
+
+    // 🔽 Shrink header on scroll
+    let lastScroll = 0;
+    window.addEventListener("scroll", () => {
+      const current = window.scrollY;
+      if (current > lastScroll && current > 20) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
+      lastScroll = current;
     });
   </script>
 </body>
