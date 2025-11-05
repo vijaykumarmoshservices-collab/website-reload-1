@@ -9,72 +9,64 @@
     html, body {
       height: 100%;
       margin: 0;
-      background: #f3f4f6;
+      background-color: #f9fafb;
+      font-family: 'Inter', sans-serif;
     }
     .header {
-      background: #1e3a8a;
-      color: white;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
+      background-color: #1e3a8a;
+      color: white;
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     iframe {
-      width: 95%;
+      width: 92%;
       height: 80vh;
-      border: 4px solid #e5e7eb;
       border-radius: 12px;
-      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      border: 4px solid #e5e7eb;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
     .iframe-wrapper {
-      margin-top: 130px;
       display: flex;
       justify-content: center;
-    }
-    .controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      margin-top: 150px;
     }
     button {
-      padding: 10px 18px;
+      padding: 10px 16px;
       border-radius: 8px;
-      border: none;
-      color: white;
       font-weight: 600;
+      color: white;
+      border: none;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: 0.2s;
     }
     button:hover {
       opacity: 0.9;
     }
     .btn-blue { background-color: #3b82f6; }
+    .btn-blue.active { background-color: #2563eb; }
     .btn-green { background-color: #10b981; }
     .btn-yellow { background-color: #facc15; color: black; }
-    .active { background-color: #2563eb !important; }
   </style>
 </head>
 <body>
-  <div class="header">🌐 Websites Dashboard</div>
-
-  <div class="controls">
-    <span class="text-gray-700 font-medium">Set Interval (Seconds):</span>
-    <button class="btn-blue active" data-time="5">5s</button>
-    <button class="btn-blue" data-time="10">10s</button>
-    <button class="btn-blue" data-time="15">15s</button>
-    <button class="btn-blue" data-time="30">30s</button>
-    <button class="btn-blue" data-time="45">45s</button>
-    <button class="btn-blue" data-time="60">60s</button>
-    <button id="pause-btn" class="btn-yellow">⏸️ Pause</button>
-    <button id="next-btn" class="btn-green">Next Site ➡️</button>
+  <div class="header text-center">
+    <h1 class="text-2xl font-bold">🌐 Websites Dashboard</h1>
+    <div class="flex flex-wrap justify-center gap-2 mt-3">
+      <span class="text-blue-200 font-medium mr-2 hidden md:inline">Interval:</span>
+      <button data-time="5" class="btn-blue active">5s</button>
+      <button data-time="10" class="btn-blue">10s</button>
+      <button data-time="15" class="btn-blue">15s</button>
+      <button data-time="30" class="btn-blue">30s</button>
+      <button data-time="45" class="btn-blue">45s</button>
+      <button data-time="60" class="btn-blue">60s</button>
+      <button id="next-btn" class="btn-green">Next ➡️</button>
+      <button id="pause-btn" class="btn-yellow">⏸️ Pause</button>
+    </div>
   </div>
 
   <div class="iframe-wrapper">
@@ -85,7 +77,7 @@
     const sites = [
       "https://www.wikipedia.org",
       "https://www.mongodb.com",
-      "https://www.php.net",
+      "https://openai.com",
       "https://laravel.com"
     ];
 
@@ -133,12 +125,10 @@
       pauseBtn.textContent = paused ? '▶️ Resume' : '⏸️ Pause';
     });
 
-    // Save last page before unload
     window.addEventListener("beforeunload", function () {
       localStorage.setItem("last_index", index);
     });
 
-    // Restore last visited page
     document.addEventListener("DOMContentLoaded", function () {
       const savedIndex = localStorage.getItem("last_index");
       if (savedIndex !== null) index = parseInt(savedIndex);
