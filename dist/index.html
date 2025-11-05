@@ -250,6 +250,9 @@
 
     workArea.addEventListener('input', saveState);
 
+    // 🕒 Auto-save every 5 seconds
+    setInterval(saveState, 5000);
+
     // Save before leaving
     window.addEventListener("beforeunload", saveState);
 
