@@ -14,7 +14,6 @@
       overflow-x: hidden;
     }
 
-    /* Iframe Styling */
     iframe {
       width: 92%;
       height: 80vh;
@@ -27,11 +26,10 @@
     .iframe-wrapper {
       display: flex;
       justify-content: center;
-      margin-top: 130px;
+      margin-top: 110px;
       transition: margin-top 0.3s ease;
     }
 
-    /* Buttons — same Laravel look */
     .btn {
       padding: 8px 16px;
       border-radius: 10px;
@@ -77,24 +75,13 @@
       box-shadow: 0 4px 6px rgba(250, 204, 21, 0.5);
     }
 
-    /* Header */
     .header {
-      background-color: #3b82f6;
+      background-color: #60a5fa; /* lighter blue */
       color: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     }
 
-    /* ✅ Responsive Tweaks */
-    @media (max-width: 1024px) {
-      .btn {
-        font-size: 14px;
-        padding: 6px 14px;
-      }
-      iframe {
-        height: 75vh;
-      }
-    }
-
+    /* 🌐 Responsive Design */
     @media (max-width: 768px) {
       .header .flex {
         flex-direction: column;
@@ -103,31 +90,44 @@
       }
       h1 {
         font-size: 1.4rem;
-      }
-      .iframe-wrapper {
-        margin-top: 160px;
-      }
-      iframe {
-        height: 70vh;
-      }
-    }
-
-    /* 📱 For Small Mobiles (Fixing the "too long" problem) */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.2rem;
-      }
-      .btn {
-        font-size: 12px;
-        padding: 5px 10px;
-        margin: 2px;
+        margin-bottom: 6px;
       }
       .iframe-wrapper {
         margin-top: 150px;
       }
       iframe {
-        width: 96%;
+        height: 70vh;
+      }
+
+      /* make buttons stay in one or two rows */
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 4px;
+      }
+
+      .btn {
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      .iframe-wrapper {
+        margin-top: 140px;
+      }
+      iframe {
         height: 65vh;
+      }
+      .btn {
+        font-size: 12px;
+        padding: 5px 10px;
       }
     }
   </style>
@@ -135,15 +135,13 @@
 <body>
   <!-- Header -->
   <div class="fixed top-0 left-0 right-0 z-50 header">
-    <div class="flex justify-between items-center px-6 py-3 flex-wrap">
-      <!-- Left: Title -->
-      <h1 class="text-2xl font-bold flex items-center gap-2 mb-2 sm:mb-0">
+    <div class="flex justify-between items-center px-4 py-3 flex-wrap">
+      <h1 class="text-2xl font-bold flex items-center gap-2">
         🌐 Websites Dashboard
       </h1>
 
-      <!-- Right: Controls -->
-      <div class="flex flex-wrap justify-end items-center gap-2">
-        <span class="text-blue-100 font-medium mr-1 hidden md:inline">Interval:</span>
+      <div class="controls flex flex-wrap justify-end items-center gap-2">
+        <span class="text-blue-100 font-medium hidden md:inline">Interval:</span>
         <button data-time="5" class="btn btn-blue active">5s</button>
         <button data-time="10" class="btn btn-blue">10s</button>
         <button data-time="15" class="btn btn-blue">15s</button>
