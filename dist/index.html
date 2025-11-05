@@ -12,6 +12,7 @@
       background-color: #f9fafb;
       font-family: 'Inter', sans-serif;
     }
+
     iframe {
       width: 92%;
       height: 80vh;
@@ -19,47 +20,87 @@
       border: 4px solid #e5e7eb;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
+
     .iframe-wrapper {
       display: flex;
       justify-content: center;
       margin-top: 130px;
     }
-    button {
-      padding: 10px 16px;
-      border-radius: 8px;
+
+    /* Button styling same as Laravel dashboard look */
+    .btn {
+      padding: 8px 18px;
+      border-radius: 10px;
       font-weight: 600;
-      color: white;
       border: none;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.2s ease-in-out;
+      font-size: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
-    button:hover {
-      opacity: 0.9;
+
+    .btn-blue {
+      background-color: #3b82f6;
+      color: #fff;
     }
-    .btn-blue { background-color: #3b82f6; }
-    .btn-blue.active { background-color: #2563eb; }
-    .btn-green { background-color: #10b981; }
-    .btn-yellow { background-color: #facc15; color: black; }
+    .btn-blue:hover {
+      background-color: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.4);
+    }
+    .btn-blue.active {
+      background-color: #1d4ed8;
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-green {
+      background-color: #10b981;
+      color: #fff;
+    }
+    .btn-green:hover {
+      background-color: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-yellow {
+      background-color: #facc15;
+      color: #000;
+    }
+    .btn-yellow:hover {
+      background-color: #eab308;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(250, 204, 21, 0.5);
+    }
+
+    /* Header styling */
+    .header {
+      background-color: #3b82f6;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <div class="fixed top-0 left-0 right-0 z-50 bg-blue-400 shadow-lg">
+  <div class="fixed top-0 left-0 right-0 z-50 header">
     <div class="flex justify-between items-center px-6 py-3">
       <!-- Left: Title -->
-      <h1 class="text-2xl font-bold text-white">🌐 Websites Dashboard</h1>
+      <h1 class="text-2xl font-bold flex items-center gap-2">
+        <span>🌐</span> Websites Dashboard
+      </h1>
 
       <!-- Right: Controls -->
       <div class="flex flex-wrap justify-end items-center gap-2">
         <span class="text-blue-100 font-medium mr-1 hidden md:inline">Interval:</span>
-        <button data-time="5" class="btn-blue active">5s</button>
-        <button data-time="10" class="btn-blue">10s</button>
-        <button data-time="15" class="btn-blue">15s</button>
-        <button data-time="30" class="btn-blue">30s</button>
-        <button data-time="45" class="btn-blue">45s</button>
-        <button data-time="60" class="btn-blue">60s</button>
-        <button id="next-btn" class="btn-green">Next ➡️</button>
-        <button id="pause-btn" class="btn-yellow">⏸️ Pause</button>
+        <button data-time="5" class="btn btn-blue active">5s</button>
+        <button data-time="10" class="btn btn-blue">10s</button>
+        <button data-time="15" class="btn btn-blue">15s</button>
+        <button data-time="30" class="btn btn-blue">30s</button>
+        <button data-time="45" class="btn btn-blue">45s</button>
+        <button data-time="60" class="btn btn-blue">60s</button>
+        <button id="next-btn" class="btn btn-green">Next ➡️</button>
+        <button id="pause-btn" class="btn btn-yellow">⏸️ Pause</button>
       </div>
     </div>
   </div>
