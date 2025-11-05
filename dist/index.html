@@ -26,10 +26,11 @@
     .iframe-wrapper {
       display: flex;
       justify-content: center;
-      margin-top: 110px;
+      margin-top: 120px;
       transition: margin-top 0.3s ease;
     }
 
+    /* 🔹 Button Design */
     .btn {
       padding: 8px 16px;
       border-radius: 10px;
@@ -48,11 +49,9 @@
     .btn-blue:hover {
       background-color: #2563eb;
       transform: translateY(-1px);
-      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.4);
     }
     .btn-blue.active {
       background-color: #1d4ed8;
-      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.6);
     }
 
     .btn-green {
@@ -61,8 +60,6 @@
     }
     .btn-green:hover {
       background-color: #059669;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 6px rgba(16, 185, 129, 0.5);
     }
 
     .btn-yellow {
@@ -71,47 +68,56 @@
     }
     .btn-yellow:hover {
       background-color: #eab308;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 6px rgba(250, 204, 21, 0.5);
     }
 
+    /* 🔹 Header */
     .header {
-      background-color: #60a5fa; /* lighter blue */
+      background-color: #60a5fa;
       color: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     }
 
-    /* 🌐 Responsive Design */
+    /* 💻 Desktop Layout */
+    .header .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
+    }
+
+    /* 📱 Mobile Layout (Header in column) */
     @media (max-width: 768px) {
-      .header .flex {
+      .header .header-inner {
         flex-direction: column;
         align-items: center;
         text-align: center;
       }
+
       h1 {
         font-size: 1.4rem;
-        margin-bottom: 6px;
-      }
-      .iframe-wrapper {
-        margin-top: 150px;
-      }
-      iframe {
-        height: 70vh;
+        margin-bottom: 10px;
       }
 
-      /* make buttons stay in one or two rows */
       .controls {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 6px;
-        margin-top: 4px;
+        margin-bottom: 8px;
       }
 
       .btn {
         font-size: 13px;
         padding: 6px 12px;
-        border-radius: 8px;
+      }
+
+      .iframe-wrapper {
+        margin-top: 170px;
+      }
+
+      iframe {
+        height: 70vh;
       }
     }
 
@@ -119,15 +125,19 @@
       h1 {
         font-size: 1.2rem;
       }
-      .iframe-wrapper {
-        margin-top: 140px;
-      }
-      iframe {
-        height: 65vh;
-      }
+
       .btn {
         font-size: 12px;
         padding: 5px 10px;
+      }
+
+      .iframe-wrapper {
+        margin-top: 160px;
+      }
+
+      iframe {
+        width: 96%;
+        height: 65vh;
       }
     }
   </style>
@@ -135,7 +145,7 @@
 <body>
   <!-- Header -->
   <div class="fixed top-0 left-0 right-0 z-50 header">
-    <div class="flex justify-between items-center px-4 py-3 flex-wrap">
+    <div class="header-inner">
       <h1 class="text-2xl font-bold flex items-center gap-2">
         🌐 Websites Dashboard
       </h1>
